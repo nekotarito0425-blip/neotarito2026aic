@@ -15,8 +15,7 @@
           <span class="brand-name">KOTARO<br /><em>OKAWA</em></span>
         </a>
         <nav class="site-nav" aria-label="ページ内ナビゲーション">
-          <a href="#about">ABOUT</a>
-          <a href="#hobby">HOBBY</a>
+          <a href="#allowance">ALLOWANCE</a>
         </nav>
         <span class="header-dot" aria-hidden="true"></span>
       </header>
@@ -27,9 +26,10 @@
             <p class="eyebrow"><span></span> PERSONAL PROFILE</p>
             <h1 id="hero-title">こんにちは、<br /><strong>大川琥太郎</strong>です。</h1>
             <p class="hero-lead">
+              趣味はテニスとゲームです。<br />
               好きなことを大切にしながら、<br class="desktop-break" />毎日を自分らしく楽しんでいます。
             </p>
-            <a class="scroll-link" href="#about">
+            <a class="scroll-link" href="#allowance">
               <span class="scroll-icon">↓</span>
               <span>SCROLL TO KNOW ME</span>
             </a>
@@ -38,7 +38,12 @@
           <div class="hero-art" aria-label="テニスボールのイラスト">
             <div class="sun-glow"></div>
             <div class="ball-shadow"></div>
-            <div class="tennis-ball"><span></span></div>
+            <svg class="tennis-ball" viewBox="0 0 300 300" role="img" aria-label="テニスボール">
+              <circle class="tennis-ball-base" cx="150" cy="150" r="147" />
+              <path class="tennis-ball-seam" d="M 0 70 C 65 145 235 145 300 70" />
+              <path class="tennis-ball-seam" d="M 0 230 C 65 155 235 155 300 230" />
+              <ellipse class="tennis-ball-highlight" cx="91" cy="76" rx="40" ry="23" transform="rotate(-35 91 76)" />
+            </svg>
             <div class="court-line court-line-one"></div>
             <div class="court-line court-line-two"></div>
             <span class="art-note note-one">KEEP<br />IT FUN</span>
@@ -46,45 +51,95 @@
           </div>
         </section>
 
-        <section class="about-section" id="about" aria-labelledby="about-title">
-          <div class="section-label"><span>01</span><i></i><span>ABOUT ME</span></div>
-          <div class="about-grid">
+        <section class="allowance-section" id="allowance" aria-labelledby="allowance-title">
+          <div class="section-label"><span>01</span><i></i><span>ALLOWANCE SYSTEM</span></div>
+          <div class="allowance-intro">
             <div>
-              <h2 id="about-title">自分らしく、<br /><em>一歩ずつ。</em></h2>
+              <h2 id="allowance-title">お小遣い<br /><em>システム</em></h2>
+              <p>これはお小遣いシステムです。事前に買った株の現在に至るまでに生じた利益の1%がお小遣いになります。<br />仮想ポイントで株式を購入したつもりになって、<br class="desktop-break" />購入日から判定日までの利益を自動計算します。</p>
             </div>
-            <div class="about-text">
-              <p>
-                大川琥太郎です。ここでは、僕のことを少しだけ紹介します。
-                新しいことに出会うワクワクを忘れず、好きな時間を丁寧に過ごしています。
-              </p>
-              <div class="name-chip">
-                <span class="chip-label">NAME</span>
-                <span class="chip-value">大川 琥太郎</span>
+            <div class="point-balance" aria-label="現在のポイント残高">
+              <span class="balance-label">VIRTUAL BALANCE</span>
+              <strong>1,000,000 <small>pt</small></strong>
+              <span class="balance-caption">初期残高（表示のみ）</span>
+            </div>
+          </div>
+
+          <div class="allowance-panel">
+            <form class="trade-form" id="trade-form">
+              <div class="form-heading"><span>TRADE DETAILS</span><span class="required-note">* 必須</span></div>
+              <div class="form-fields">
+                <label class="field field-code">
+                  <span>銘柄コード <b>*</b></span>
+                  <input id="stock-code" name="stockCode" list="stock-code-list" type="text" inputmode="text" placeholder="例：7203" autocomplete="off" />
+                  <small>日本株の数字は .T を自動付与</small>
+                  <div class="stock-candidates" aria-label="銘柄候補">
+                    <span>候補：</span>
+                    <button type="button" data-stock-code="7203">7203 トヨタ</button>
+                    <button type="button" data-stock-code="6758">6758 ソニーG</button>
+                    <button type="button" data-stock-code="9984">9984 SBG</button>
+                    <button type="button" data-stock-code="8306">8306 三菱UFJ</button>
+                    <button type="button" data-stock-code="9432">9432 NTT</button>
+                    <button type="button" data-stock-code="285A">285A キオクシア</button>
+                  </div>
+                  <details class="candidate-library">
+                    <summary>候補をもっと見る（国内主要銘柄）</summary>
+                    <div class="stock-candidate-grid" id="stock-candidate-grid"></div>
+                    <p class="candidate-status" id="candidate-status">公開コード一覧を読み込んでいます…</p>
+                    <a class="all-listed-link" href="https://quote.jpx.co.jp/jpxhp/main/index.aspx?F=stock_search" target="_blank" rel="noopener noreferrer">全銘柄をJPXで検索する ↗</a>
+                  </details>
+                  <datalist id="stock-code-list"></datalist>
+                </label>
+                <label class="field">
+                  <span>購入株数 <b>*</b></span>
+                  <input id="share-quantity" name="shareQuantity" type="number" min="1" step="1" value="1" required />
+                  <small>1株単位で入力</small>
+                </label>
+                <label class="field">
+                  <span>購入日 <b>*</b></span>
+                  <input id="purchase-date" name="purchaseDate" type="date" />
+                </label>
+                <label class="field">
+                  <span>判定日 <b>*</b></span>
+                  <input id="payout-date" name="payoutDate" type="date" />
+                </label>
+              </div>
+
+              <details class="manual-prices">
+                <summary>株価を手入力する（取得できない場合）</summary>
+                <div class="manual-fields">
+                  <label class="field">
+                    <span>購入価格（1株）</span>
+                    <input id="purchase-price" type="number" min="0" step="1" placeholder="例：2500" />
+                    <small>購入した日の1株あたりの価格</small>
+                  </label>
+                  <label class="field">
+                    <span>判定価格（1株）</span>
+                    <input id="payout-price" type="number" min="0" step="1" placeholder="例：2750" />
+                    <small>判定日の1株あたりの価格</small>
+                  </label>
+                </div>
+              </details>
+              <button class="calculate-button" type="submit"><span>利益を計算する</span><b>→</b></button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="calculation-result" aria-live="polite">
+              <div class="result-topline"><span>ALLOWANCE</span><span id="result-source">READY</span></div>
+              <div class="result-yen"><span>お小遣い（円換算）</span><strong id="allowance-yen">0</strong><small>円</small></div>
+              <div class="result-amount"><strong id="allowance-amount">0</strong><span>pt</span></div>
+              <p class="result-message" id="result-message">購入価格・判定価格・株数を入力すると、<br />利益の1%を計算します。</p>
+              <div class="result-details">
+                <div><span>利益</span><strong id="profit-amount">—</strong></div>
+                <div><span>購入株数</span><strong id="quantity-result">—</strong></div>
+                <div><span>購入価格</span><strong id="purchase-price-result">—</strong></div>
+                <div><span>判定価格</span><strong id="payout-price-result">—</strong></div>
               </div>
             </div>
           </div>
+          <p class="finance-note">※ 株価は参考値です。このページは仮想ポイントの計算用で、実際の売買や投資判断には使用できません。</p>
         </section>
 
-        <section class="hobby-section" id="hobby" aria-labelledby="hobby-title">
-          <div class="hobby-heading">
-            <div class="section-label"><span>02</span><i></i><span>MY HOBBY</span></div>
-            <p class="heading-aside">A LITTLE THING<br />I LOVE</p>
-          </div>
-          <div class="hobby-card">
-            <div class="hobby-number">01</div>
-            <div class="hobby-main">
-              <span class="hobby-kicker">WEEKEND FAVORITE</span>
-              <h2 id="hobby-title">Tennis<span class="title-period">.</span></h2>
-              <p>ボールを打つ音、コートを走る感覚。<br />テニスが、好きです。</p>
-            </div>
-            <div class="racket-art" aria-hidden="true">
-              <div class="racket-head"></div>
-              <div class="racket-handle"></div>
-              <div class="racket-grip"></div>
-            </div>
-            <div class="card-ball tennis-ball"><span></span></div>
-          </div>
-        </section>
       </main>
 
       <footer class="site-footer">
@@ -92,5 +147,6 @@
         <p class="footer-name">KOTARO OKAWA / PROFILE 2026</p>
       </footer>
     </div>
+    <script src="app.js" defer></script>
   </body>
 </html>
