@@ -76,7 +76,7 @@ h1 strong { color: var(--green); font-weight: 800; }
 
 .allowance-section { padding: 103px 0 112px; border-top: 1px solid var(--line); }
 .allowance-intro { margin-top: 46px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
-.allowance-intro h2 { margin: 0; font-size: clamp(38px, 4vw, 58px); line-height: 1.22; letter-spacing: -.06em; font-weight: 500; }
+.allowance-intro h2 { margin: 0; font-size: clamp(45px, 6vw, 82px); line-height: 1.12; letter-spacing: -.07em; font-weight: 500; }
 .allowance-intro h2 em { color: var(--green); font-style: normal; font-weight: 800; }
 .allowance-intro p { margin: 20px 0 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
 .point-balance { min-width: 210px; padding: 21px 22px 18px; border: 1px solid var(--line); background: var(--paper-deep); }
@@ -194,7 +194,7 @@ h1 strong { color: var(--green); font-weight: 800; }
   .note-two { left: 4%; bottom: 17%; }
   .allowance-section { padding: 76px 0 82px; }
   .allowance-intro { display: block; margin-top: 36px; }
-  .allowance-intro h2 { font-size: 40px; }
+  .allowance-intro h2 { font-size: 44px; }
   .allowance-intro p { margin-top: 18px; font-size: 12px; }
   .point-balance { margin-top: 26px; padding: 17px 19px 15px; }
   .point-balance strong { font-size: 25px; }
